@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Contact</title>
+  <body> 
+  	<p> Welcome sur la page de l'auteur <%= @myauthor.first_name%> <%= @myauthor.last_name%> !</p> 
+  	<p>Voici les infos sur cet auteur :</p>
+
+  	<table class="table">
+  <thead>
+    <tr>
+      <th scope="row">#</th>
+      <th scope="row">First Name</th>
+      <th scope="row">Last Name</th>
+      <th scope="row">Description</th>
+      <th scope="row">Creation date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr>
+      <th scope="col"> # </th>
+      <td> <%= @myauthor.first_name %> </td>
+      <td> <%= @myauthor.last_name %> </td>
+      <td> <%= @myauthor.description %> </td>
+      <td> <%= @myauthor.created_at %> </td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+
+</body>
+</html>

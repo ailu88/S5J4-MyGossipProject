@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Home - The Gossip Project</title>
+  <body> 
+  	<p>Welcome ! </p> 
+  	<p>Voici tous les potins : </p>
+
+
+   <%= @gossips.each do |gossip| %>
+    <div class="card" style="width: 18rem;">
+  	<div class="card-body">
+    <h5 class="card-title"> <%= gossip.title %> </h5>
+    <h6 class="card-subtitle mb-2 text-muted"> <%= gossip.user.first_name %> <%= gossip.user.last_name %> </h6>
+    <p class="card-text"> <%= gossip.content %> ... </p>
+    <%= link_to "Go to gossip page", '/gossip/'+gossip.id.to_s %>
+  	</div>
+	</div>
+   	<%end%>
+
+
+</body>
+</html>
