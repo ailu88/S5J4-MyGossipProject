@@ -1,0 +1,243 @@
+  [1m[35m (220.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "the_gossip_project_test"[0m
+  [1m[35m (458.0ms)[0m  [1m[35mCREATE DATABASE "the_gossip_project_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (2.6ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "cities" CASCADE[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "cities" ("id" bigserial primary key, "name" character varying, "zip_code" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "comments" CASCADE[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "comments" ("id" bigserial primary key, "content" text, "user_id" bigint, "gossip_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_gossip_id" ON "comments"  ("gossip_id")[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_user_id" ON "comments"  ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "gossips" CASCADE[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE TABLE "gossips" ("id" bigserial primary key, "title" character varying, "content" text, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX  "index_gossips_on_user_id" ON "gossips"  ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "likes" CASCADE[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "likes" ("id" bigserial primary key, "user_id" bigint, "gossip_id" bigint, "comment_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_likes_on_comment_id" ON "likes"  ("comment_id")[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_likes_on_gossip_id" ON "likes"  ("gossip_id")[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_likes_on_user_id" ON "likes"  ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "private_messages" CASCADE[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "private_messages" ("id" bigserial primary key, "content" text, "recipient_id" bigint, "sender_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX  "index_private_messages_on_recipient_id" ON "private_messages"  ("recipient_id")[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX  "index_private_messages_on_sender_id" ON "private_messages"  ("sender_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "tag_gossips" CASCADE[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "tag_gossips" ("id" bigserial primary key, "gossip_id" bigint, "tag_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX  "index_tag_gossips_on_gossip_id" ON "tag_gossips"  ("gossip_id")[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX  "index_tag_gossips_on_tag_id" ON "tag_gossips"  ("tag_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "tags" CASCADE[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "tags" ("id" bigserial primary key, "title" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "description" text, "email" character varying, "age" integer, "city_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_city_id" ON "users"  ("city_id")[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190131183651)[0m
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190131172049),
+(20190131171848),
+(20190131172137),
+(20190131172445),
+(20190131172126),
+(20190131172030),
+(20190131171959);
+
+[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2019-02-04 11:37:37.440428"], ["updated_at", "2019-02-04 11:37:37.440428"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (1.0ms)[0m  [1m[32mINSERT INTO "cities" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", "2019-02-04 11:37:37.546269"], ["updated_at", "2019-02-04 11:37:37.546269"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.4ms)[0m  [1m[32mINSERT INTO "cities" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", "2019-02-04 11:37:37.569152"], ["updated_at", "2019-02-04 11:37:37.569152"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.4ms)[0m  [1m[32mINSERT INTO "cities" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", "2019-02-04 11:37:37.589268"], ["updated_at", "2019-02-04 11:37:37.589268"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.3ms)[0m  [1m[32mINSERT INTO "cities" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", "2019-02-04 11:37:38.903342"], ["updated_at", "2019-02-04 11:37:38.903342"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.7ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Paris"], ["zip_code", "75005"], ["created_at", "2019-02-04 11:50:07.634243"], ["updated_at", "2019-02-04 11:50:07.634243"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.3ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Paris"], ["zip_code", "75005"], ["created_at", "2019-02-04 11:50:07.650938"], ["updated_at", "2019-02-04 11:50:07.650938"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.4ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Paris"], ["zip_code", "75005"], ["created_at", "2019-02-04 11:50:07.666784"], ["updated_at", "2019-02-04 11:50:07.666784"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.4ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Paris"], ["zip_code", "75005"], ["created_at", "2019-02-04 11:50:07.797604"], ["updated_at", "2019-02-04 11:50:07.797604"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.8ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "New Karla"], ["zip_code", "75005"], ["created_at", "2019-02-04 11:57:15.592838"], ["updated_at", "2019-02-04 11:57:15.592838"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.4ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Haydenmouth"], ["zip_code", "75005"], ["created_at", "2019-02-04 11:57:15.617747"], ["updated_at", "2019-02-04 11:57:15.617747"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.4ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Lindseyburgh"], ["zip_code", "75005"], ["created_at", "2019-02-04 11:57:15.635206"], ["updated_at", "2019-02-04 11:57:15.635206"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.3ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Volkmanton"], ["zip_code", "75005"], ["created_at", "2019-02-04 11:57:15.654524"], ["updated_at", "2019-02-04 11:57:15.654524"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.8ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Gidgetburgh"], ["zip_code", "75005"], ["created_at", "2019-02-04 11:59:38.827471"], ["updated_at", "2019-02-04 11:59:38.827471"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.5ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Cyrilside"], ["zip_code", "75005"], ["created_at", "2019-02-04 11:59:38.847634"], ["updated_at", "2019-02-04 11:59:38.847634"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.5ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Gaylordview"], ["zip_code", "75005"], ["created_at", "2019-02-04 11:59:38.865370"], ["updated_at", "2019-02-04 11:59:38.865370"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.6ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Dietrichbury"], ["zip_code", "75005"], ["created_at", "2019-02-04 11:59:38.890418"], ["updated_at", "2019-02-04 11:59:38.890418"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.5ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "South Rebbecca"], ["zip_code", "75005"], ["created_at", "2019-02-04 11:59:38.913912"], ["updated_at", "2019-02-04 11:59:38.913912"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (2621.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "the_gossip_project_test"[0m
+  [1m[35m (608.8ms)[0m  [1m[35mCREATE DATABASE "the_gossip_project_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "cities" CASCADE[0m
+  [1m[35m (88.4ms)[0m  [1m[35mCREATE TABLE "cities" ("id" bigserial primary key, "name" character varying, "zip_code" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "comments" CASCADE[0m
+  [1m[35m (141.8ms)[0m  [1m[35mCREATE TABLE "comments" ("id" bigserial primary key, "content" text, "user_id" bigint, "gossip_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (35.7ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_gossip_id" ON "comments"  ("gossip_id")[0m
+  [1m[35m (49.8ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_user_id" ON "comments"  ("user_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "gossips" CASCADE[0m
+  [1m[35m (86.1ms)[0m  [1m[35mCREATE TABLE "gossips" ("id" bigserial primary key, "title" character varying, "content" text, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (49.2ms)[0m  [1m[35mCREATE  INDEX  "index_gossips_on_user_id" ON "gossips"  ("user_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "likes" CASCADE[0m
+  [1m[35m (52.9ms)[0m  [1m[35mCREATE TABLE "likes" ("id" bigserial primary key, "user_id" bigint, "gossip_id" bigint, "comment_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (49.1ms)[0m  [1m[35mCREATE  INDEX  "index_likes_on_comment_id" ON "likes"  ("comment_id")[0m
+  [1m[35m (49.1ms)[0m  [1m[35mCREATE  INDEX  "index_likes_on_gossip_id" ON "likes"  ("gossip_id")[0m
+  [1m[35m (50.0ms)[0m  [1m[35mCREATE  INDEX  "index_likes_on_user_id" ON "likes"  ("user_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "private_messages" CASCADE[0m
+  [1m[35m (86.1ms)[0m  [1m[35mCREATE TABLE "private_messages" ("id" bigserial primary key, "content" text, "recipient_id" bigint, "sender_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (49.6ms)[0m  [1m[35mCREATE  INDEX  "index_private_messages_on_recipient_id" ON "private_messages"  ("recipient_id")[0m
+  [1m[35m (49.8ms)[0m  [1m[35mCREATE  INDEX  "index_private_messages_on_sender_id" ON "private_messages"  ("sender_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "tag_gossips" CASCADE[0m
+  [1m[35m (52.9ms)[0m  [1m[35mCREATE TABLE "tag_gossips" ("id" bigserial primary key, "gossip_id" bigint, "tag_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (49.7ms)[0m  [1m[35mCREATE  INDEX  "index_tag_gossips_on_gossip_id" ON "tag_gossips"  ("gossip_id")[0m
+  [1m[35m (49.8ms)[0m  [1m[35mCREATE  INDEX  "index_tag_gossips_on_tag_id" ON "tag_gossips"  ("tag_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "tags" CASCADE[0m
+  [1m[35m (86.2ms)[0m  [1m[35mCREATE TABLE "tags" ("id" bigserial primary key, "title" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (97.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "description" text, "email" character varying, "age" integer, "city_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (49.6ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_city_id" ON "users"  ("city_id")[0m
+  [1m[35m (85.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (10.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190131183651)[0m
+  [1m[35m (10.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190131171848),
+(20190131171959),
+(20190131172126),
+(20190131172030),
+(20190131172137),
+(20190131172049),
+(20190131172445);
+
+[0m
+  [1m[35m (95.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2019-02-04 12:05:45.352497"], ["updated_at", "2019-02-04 12:05:45.352497"]]
+  [1m[35m (11.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.6ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "North Twylaburgh"], ["zip_code", "75005"], ["created_at", "2019-02-04 12:05:45.487099"], ["updated_at", "2019-02-04 12:05:45.487099"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.3ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Normaburgh"], ["zip_code", "75005"], ["created_at", "2019-02-04 12:05:45.492470"], ["updated_at", "2019-02-04 12:05:45.492470"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.4ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "South Quincy"], ["zip_code", "75005"], ["created_at", "2019-02-04 12:05:45.506630"], ["updated_at", "2019-02-04 12:05:45.506630"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.3ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "South Larisa"], ["zip_code", "75005"], ["created_at", "2019-02-04 12:05:45.511887"], ["updated_at", "2019-02-04 12:05:45.511887"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.4ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Toyfurt"], ["zip_code", "75005"], ["created_at", "2019-02-04 12:05:45.516788"], ["updated_at", "2019-02-04 12:05:45.516788"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.5ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "West Jeffrey"], ["zip_code", "75005"], ["created_at", "2019-02-04 12:10:26.306320"], ["updated_at", "2019-02-04 12:10:26.306320"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.4ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "New Hung"], ["zip_code", "75005"], ["created_at", "2019-02-04 12:10:26.314169"], ["updated_at", "2019-02-04 12:10:26.314169"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.4ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "North Garryfurt"], ["zip_code", "75005"], ["created_at", "2019-02-04 12:10:26.321103"], ["updated_at", "2019-02-04 12:10:26.321103"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.3ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Dallaschester"], ["zip_code", "75005"], ["created_at", "2019-02-04 12:10:26.330520"], ["updated_at", "2019-02-04 12:10:26.330520"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCity Create (0.4ms)[0m  [1m[32mINSERT INTO "cities" ("name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Olivertown"], ["zip_code", "75005"], ["created_at", "2019-02-04 12:10:26.338206"], ["updated_at", "2019-02-04 12:10:26.338206"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
