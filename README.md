@@ -1,24 +1,22 @@
-# README
+# A propos de The Gossip Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+The Gossip Project permet de consulter les potins de THP, et d’obtenir des informations sur les auteurs de ces potins. En donnant votre nom, vous pourrez accéder à la page d’accueil énumérant tous les potins. Par ailleurs, chaque potin a sa propre page et il en est de même pour les auteurs.
 
-* Ruby version
 
-* System dependencies
+#  Instructions
 
-* Configuration
+- Git clonez puis lancez bundle install, puis rails db:migrate, et enfin rails db:seed. Puis, lancez rails serveur pour afficher le site.
 
-* Database creation
+- Allez sur la page d’accueil et entrez votre nom : http://localhost:3000 Vous serez redirigés vers la page énumérant tous les potins !
 
-* Database initialization
+- Pour afficher la page d’un potin en particulier, saisissez : http://localhost:3000/gossip/+numéro du potin
 
-* How to run the test suite
+- Pour afficher l'auteur d’un potin en particulier, saisissez : http://localhost:3000/author/+user_id
 
-* Services (job queues, cache servers, search engines, etc.)
+- Et pour vérifier le projet grâce aux tests, lancez rspec !
 
-* Deployment instructions
+# Auteures
 
-* ...
+- @Éloïse
+- @Bérénice

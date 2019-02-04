@@ -1,21 +1,61 @@
 <html>
   <head>
     <title>Home - The Gossip Project</title>
+
+
   <body> 
-  	<p>Welcome ! </p> 
-  	<p>Voici tous les potins : </p>
+  	
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/3-col-portfolio.css" rel="stylesheet">
 
 
-   <%= @gossips.each do |gossip| %>
-    <div class="card" style="width: 18rem;">
-  	<div class="card-body">
-    <h5 class="card-title"> <%= gossip.title %> </h5>
-    <h6 class="card-subtitle mb-2 text-muted"> <%= gossip.user.first_name %> <%= gossip.user.last_name %> </h6>
-    <p class="card-text"> <%= gossip.content %> ... </p>
-    <%= link_to "Go to gossip page", '/gossip/'+gossip.id.to_s %>
-  	</div>
-	</div>
-   	<%end%>
+  </head>
+
+
+  <body>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading -->
+      <h1 class="my-4">Welcome, <%=params[:first_name]%> !</h1>
+        <h1> <small> Voici tous les potins :</small> </h1>
+    
+
+        <% @gossips.each do |gossip| %>
+   	
+		      <div class="card" style = "margin-bottom:25px" >
+		  <div class="card-header" >
+		    <%= gossip.user.first_name %> <%= gossip.user.last_name %>
+		  </div>
+		  <div class="card-body">
+		    <h5 class="card-title"><%= gossip.title %></h5>
+		    <p class="card-text"><%= gossip.content %></p>
+		    <a class="btn btn-primary" <%= link_to "Go to gossip page", '/gossip/'+gossip.id.to_s %> </a>
+		  </div>
+		</div>
+
+      <%end%>
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; The Gossip Project 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+  </body>
+
+</html>
+
+
+
+
 
 
 </body>

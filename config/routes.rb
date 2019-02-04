@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
-root 'thegossipcontroller#home'
+root 'thegossipcontroller#welcome'
 
 get '/team', to: 'thegossipcontroller#team'
 get '/contact', to: 'thegossipcontroller#contact'
 
-get 'welcome/:first_name', to: 'thegossipcontroller#welcome'
+get '/welcome(/:first_name)', to: 'thegossipcontroller#home'
 
 get 'gossip/:id', to: 'thegossipcontroller#gossip_page'
 

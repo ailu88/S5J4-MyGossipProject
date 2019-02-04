@@ -1,0 +1,167 @@
+/* GENERIQUE */
+
+	* { /* applicable partout */
+		padding: 0;
+		margin: 0;
+	}
+	
+	body,html {
+		height: 100%;
+	}
+
+	a > i {
+			padding-bottom: 17px;
+	}
+
+	i {
+		padding-top: 15px;
+	}
+	
+	footer { 
+	  position: absolute;
+	  width: 100%;
+	  bottom: 0;
+	 }
+
+/* MENU DU HAUT */
+
+	.containerheader              /* styles appliqués à toute la partie du haut */
+	{
+	  position: absolute;
+	  width: 100%;
+	  top: 20px;
+	  right: 30px;
+
+	  display: flex;
+	  flex-direction: row;
+	  height:40px;
+	  align-items:center;
+	  justify-content: flex-end;
+	  background-color: none;
+	  font: 16px arial;
+	  color:#212121;
+	  column-gap: 15px
+	}
+
+	.containerheader a{          /* styles appliqués à tous les éléments "a" contenus dans la partie du haut "containerheader" */
+	color:black;
+	font: 16px arial;
+	text-decoration:none;
+	}
+
+	.containerheader a:hover {     /* même chose mais quand le curseur passe au-dessus */
+		text-decoration:underline;
+	}
+
+		.bluebutton {
+	background-color: #4285F4;
+	  border: none;
+	  color: white;
+	  padding: 10px 10px;
+	  text-align: center;
+	  font-size: 16px;
+	  font-weight:bold;
+	}
+
+
+
+/* PARTIE CENTRALE : LOGO GOOGLE, SEARCHBAR ET BOUTTONS */
+
+	.containercentral {
+	  display:flex;
+	  flex-direction:column;
+	  justify-content: center;
+	  align-items:stretch;
+	  margin-left:auto;
+	  margin-right: auto;
+	  width: 40%;
+	  padding:50px;	
+	}
+
+	.imagecentre {
+	  display:block;
+	  margin-left:auto;
+	  margin-right: auto;
+	  width: 60%;
+	  margin-bottom: -25px;
+	  margin-top:150px;
+	}
+
+	.searchbar{
+		display:flex;
+		justify-content: center;
+	}
+	
+	.searchbar :hover {
+		box-shadow: 3px 3px 2px 1px rgba(0, 0, 255, .2);
+	}
+
+	.buttons {
+	display:flex;
+	justify-content: center;
+	}
+
+	.greybutton {
+	background-color: #F4F4F5;
+	  border: none;
+	  color: #777777;
+	  padding: 10px 10px;
+	  text-align: center;
+	  font-size: 15px;
+	  margin: 20px;
+	  font-weight:bold;
+	}
+
+	.greybutton:hover {
+	  color:black;
+	  border: 1px solid #21212121;
+	  box-shadow: 0px 1px 0px 0px rgba(0, 0, 255, .2);
+	}
+
+
+/* PARTIE DU BAS / FOOTER */
+
+	.containerfrance
+	{
+	  display: flex;
+	  flex-direction: row;
+	  height:50px;
+	  align-items:center;
+	  justify-content: space-between;
+	  background-color: #EFEFEF;
+	  column-gap: 20px;
+	  margin-bottom: 1px;
+	  color:#5D6166;
+	  font: 16px arial;
+	  text-decoration:none
+	  padding-right:10px;
+	  padding-left:10px;
+	  border: 1px solid #21212121;
+	}
+
+	.containerparent
+	{
+	  display: flex;
+	  flex-direction: row;
+	  height:50px;
+	  align-items:center;
+	  justify-content: space-between;
+	  background-color: #EFEFEF;
+	  column-gap: 100px;
+	  margin-bottom: 1px;
+	}
+
+	.containerparent a:hover {
+		text-decoration:underline;
+	}
+
+	.containerparent a{
+	color:#5D6166;
+	font: 14px arial;
+	text-decoration:none;
+	padding-right:10px;
+	padding-left:10px;
+
+	}
+
+

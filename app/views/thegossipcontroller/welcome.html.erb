@@ -2,7 +2,16 @@
   <head>
     <title>Contact</title>
   <body> 
-  	<p> Welcome, <%=params[:first_name]%> !</p> 
-  	<p>Ici c'est notre super site de potins, il est chouette, non ?</p>
+
+
+	<center>
+		<form action="/welcome" method="get">
+		<label> <span> Tell me your name... </span><br>
+			<br>
+		  <input type="text" placeholder="Your name" name="first_name" required/>
+		  <input type="submit" class="btn btn-dark" value="Confirm" />
+		</form>
+	</center>
+
 </body>
 </html>
