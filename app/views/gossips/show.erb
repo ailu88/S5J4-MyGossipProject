@@ -22,7 +22,7 @@
       <th scope="col"> # </th>
       <td> 
       	<p> <%= @gossip.user.first_name %> <%= @gossip.user.last_name %> </p> 
-      	<p> <%= link_to "Read more about the author", '/author/'+@gossip.user.id.to_s %> </p> 
+      	<p> <%= link_to "Read more about the author", user_path(@gossip.user.id) %> </p> 
       </td>
       <td> <%= @gossip.title %> </td>
       <td> <%= @gossip.content %> </td>

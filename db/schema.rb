@@ -56,7 +56,18 @@ ActiveRecord::Schema.define(version: 2019_01_31_183651) do
     t.text "content"
     t.bigint "recipient_id"
     t.bigint "sender_id"
-    t.datetime "created_at", null: false
+    t.datetime "created_at", null: false    has_many :sent_messages, foreign_key: 'sender_id', class_name: "PrivateMessage"
+    has_many :received_messages, foreign_key: 'recipient_id', class_name: "PrivateMessage"
+
+    validates :email,
+    presence: true,
+    uniqueness: true,
+    format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
+
+    validates :first_name,
+    presence: true
+
+    validates :last_name,
     t.datetime "updated_at", null: false
     t.index ["recipient_id"], name: "index_private_messages_on_recipient_id"
     t.index ["sender_id"], name: "index_private_messages_on_sender_id"

@@ -2,7 +2,7 @@
   <head>
     <title>Contact</title>
   <body> 
-  	<p> Welcome sur la page de l'auteur <%= @myauthor.first_name%> <%= @myauthor.last_name%> !</p> 
+  	<p> Welcome sur la page de l'auteur <%= @user.first_name%> <%= @user.last_name%> !</p> 
   	<p>Voici les infos sur cet auteur :</p>
 
   	<table class="table">
@@ -20,10 +20,10 @@
 
     <tr>
       <th scope="col"> # </th>
-      <td> <%= @myauthor.first_name %> </td>
-      <td> <%= @myauthor.last_name %> </td>
-      <td> <%= @myauthor.description %> </td>
-      <td> <%= @myauthor.created_at %> </td>
+      <td> <%= @user.first_name %> </td>
+      <td> <%= @user.last_name %> </td>
+      <td> <%= @user.description %> </td>
+      <td> <%= @user.created_at %> </td>
     </tr>
 
   </tbody>
