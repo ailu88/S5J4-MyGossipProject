@@ -3,6 +3,7 @@ class Gossip < ApplicationRecord
     validates :content, presence: true
 
     belongs_to :user
+
     has_many :likes
     has_many :tag_gossips
     has_many :comments
