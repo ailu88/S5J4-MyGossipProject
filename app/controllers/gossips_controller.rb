@@ -45,7 +45,7 @@ class GossipsController < ApplicationController
 
   def update
     @gossip = Gossip.find(params[:id])
-    if @gossip.update(gossip_params)
+    if @gossip.update(title: params[:title], content: params[:content], user_id: params[:user_id])
       redirect_to @gossip
     else
       render :edit

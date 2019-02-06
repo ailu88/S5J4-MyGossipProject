@@ -33,6 +33,8 @@
 
 </table>
 
+  <p> <%= link_to "Edit this gossip", edit_gossip_path %> </p> 
+  <p> <%= link_to 'Delete this gossip', gossip_path(@gossip), method: :delete, data: { confirm: 'Are you sure?' } %></p> 
 
 </body>
 </html>
