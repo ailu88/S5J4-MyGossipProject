@@ -10,6 +10,10 @@
 
     <% @gossips_subarray = @gossips.where("user_id = ?", user.id) %>
 
+      <%= label_tag 'Content' %>
+      <%= text_area_tag 'content', @comment.content %>
+      <br />
+
     <% @gossips_subarray.each do |gossip| %>
         
               <div class="card" style = "margin-bottom:25px" >

@@ -8,7 +8,4 @@ class ThegossipcontrollerController < ApplicationController
 	def welcome
 	end
 	
-	def author_page
-		@myauthor = User.find(params[:id])
-	end
 end

@@ -39,5 +39,13 @@
   <p> <%= link_to "Edit this gossip", edit_gossip_path %> </p> 
   <p> <%= link_to 'Delete this gossip', gossip_path(@gossip), method: :delete, data: { confirm: 'Are you sure?' } %></p> 
 
+
+  <h3>Comments (<%= @gossip.comments.size %>)</h3>
+
+  <%= render partial: 'gossips/comment', collection: @gossip.comments.reverse %>
+
+  <%= render partial: 'gossips/form' %>
+
 </body>
+
 </html>
