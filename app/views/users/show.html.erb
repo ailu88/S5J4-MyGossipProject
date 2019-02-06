@@ -12,7 +12,9 @@
       <th scope="row">First Name</th>
       <th scope="row">Last Name</th>
       <th scope="row">Description</th>
-      <th scope="row">Creation date</th>
+      <th scope="row">Email</th>
+      <th scope="row">Age</th>
+      <th scope="row">City</th>
     </tr>
   </thead>
 
@@ -23,13 +25,16 @@
       <td> <%= @user.first_name %> </td>
       <td> <%= @user.last_name %> </td>
       <td> <%= @user.description %> </td>
-      <td> <%= @user.created_at %> </td>
+      <td> <%= @user.email %> </td>
+      <td> <%= @user.age %> </td>
+      <td> <%= @user.city.name %> </td>
     </tr>
 
   </tbody>
 
 </table>
 
+<p> <%= link_to "Read more about the city", city_path(@user.city) %> </p> 
 
 </body>
 </html>

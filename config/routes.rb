@@ -4,6 +4,8 @@ resources :gossips
 
 resources :users
 
+resources :cities
+
 root 'gossips#index'
 
 get '/team', to: 'thegossipcontroller#team'

@@ -22,7 +22,8 @@
       <th scope="col"> # </th>
       <td> 
       	<p> <%= @gossip.user.first_name %> <%= @gossip.user.last_name %> </p> 
-      	<p> <%= link_to "Read more about the author", user_path(@gossip.user.id) %> </p> 
+        <p> From: <%= @gossip.user.city.name %> </p> 
+      	
       </td>
       <td> <%= @gossip.title %> </td>
       <td> <%= @gossip.content %> </td>
@@ -33,6 +34,8 @@
 
 </table>
 
+  <p> <%= link_to "Read more about the author", user_path(@gossip.user.id) %> </p> 
+  <p> <%= link_to "Read more about the city", city_path(@gossip.user.city) %> </p> 
   <p> <%= link_to "Edit this gossip", edit_gossip_path %> </p> 
   <p> <%= link_to 'Delete this gossip', gossip_path(@gossip), method: :delete, data: { confirm: 'Are you sure?' } %></p> 
 
