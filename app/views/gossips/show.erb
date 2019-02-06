@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Contact</title>
+  <body> 
+  	<p> Welcome sur la page du gossip N° <%=params[:id]%> !</p> 
+  	<p>Voici les infos sur ce potin :</p>
+
+  	<table class="table">
+  <thead>
+    <tr>
+      <th scope="row">#</th>
+      <th scope="row">Author</th>
+      <th scope="row">Title</th>
+      <th scope="row">Content</th>
+      <th scope="row">Creation date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr>
+      <th scope="col"> # </th>
+      <td> 
+      	<p> <%= @gossip.user.first_name %> <%= @gossip.user.last_name %> </p> 
+      	<p> <%= link_to "Read more about the author", '/author/'+@gossip.user.id.to_s %> </p> 
+      </td>
+      <td> <%= @gossip.title %> </td>
+      <td> <%= @gossip.content %> </td>
+      <td> <%= @gossip.created_at %> </td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+
+</body>
+</html>
