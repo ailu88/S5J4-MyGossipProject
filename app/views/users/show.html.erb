@@ -34,7 +34,24 @@
 
 </table>
 
-<p> <%= link_to "Read more about the city", city_path(@user.city) %> </p> 
+
+<div class="container">
+
+            <div class="card" style = "margin-bottom:25px" >
+        <div class="card-header" >
+          <%= @user.first_name %> <%= @user.last_name %>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"> Description : <%= @user.description %></h5>
+          <p class="card-text">Email : <%= @user.email %></p>
+          <a class="btn btn-primary" <%= link_to "Read more about the city", city_path(@user.city) %> </a>
+          <p> <%= link_to "Read more about the city", city_path(@user.city) %> </p> 
+        </div>
+      </div>
+
+  
+
+</div>
 
 </body>
 </html>
