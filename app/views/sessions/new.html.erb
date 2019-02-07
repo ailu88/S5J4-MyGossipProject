@@ -1,0 +1,31 @@
+<html>
+  <head>
+  </head>
+
+<body>
+
+	<center>
+
+    <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+      <%= label_tag 'Your email' %>
+      <%= text_field_tag 'email' %>
+      <br /> <br />
+
+      <%= label_tag 'Your password' %>
+      <%= text_field_tag 'password' %>
+      <br /> <br />
+
+      <%= submit_tag "Login" %>
+
+    <% end %>
+
+
+	</center>
+
+
+
+
+</body>
+
+</html>

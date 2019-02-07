@@ -8,11 +8,13 @@ resources :users
 
 resources :cities
 
+resources :sessions, only: [:new, :create, :destroy]
+
 root 'gossips#index'
 
-get '/team', to: 'thegossipcontroller#team'
+get '/team', to: 'application#team'
 
-get '/contact', to: 'thegossipcontroller#contact'
+get '/contact', to: 'application#contact'
 
 
 

@@ -16,21 +16,24 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
+    	
   def create
-  	
-  	puts "$" * 60
-    puts "ceci est le contenu de params :"
-    puts params
-    puts "$" * 60
-    
-    @comment = Comment.new(content: params[:content], user_id: params[:user_id])
+    @comment = Comment.new(comment_params)
     @comment.gossip_id = params[:gossip_id]
-    
+
     @comment.save
-    
+
     redirect_to gossip_path(@comment.gossip)
-    
+
+    puts params 
+
   end
+
+  def comment_params
+    params.require(:comment).permit(:user_id, :content)
+    puts params 
+  end
+      
 
   def destroy
     @comment = City.find(params[:id])

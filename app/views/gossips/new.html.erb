@@ -8,10 +8,6 @@
 
     <%= form_tag url_for(action: 'create'), method: "post" do %>
 
-      <%= label_tag 'Auteur ID' %>
-      <%= text_field_tag 'user_id', 8 %>
-      <br /> <br />
-
       <%= label_tag 'Title' %>
       <%= text_field_tag 'title', @gossip.title %>
       <br /> <br />

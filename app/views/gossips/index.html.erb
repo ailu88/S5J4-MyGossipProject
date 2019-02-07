@@ -17,12 +17,33 @@
 
   <body>
 
+    <% if flash[:danger] %>
+    <div> Please log in <div>
+    <% end %>
+
+    <% if flash[:successful_login] %>
+    <div> successful_login <div>
+    <% end %>
+
     <!-- Page Content -->
     <div class="container">
 
+
       <!-- Page Heading -->
-      <h1 class="my-4">Welcome, <%=params[:first_name]%> !</h1>
-      <p> <%= link_to "Submit a new Gossip", new_gossip_path %> </p> 
+      <% if current_user %>
+
+      <h1 class="my-4">  Welcome,  <%= current_user.first_name %> !</h1>
+
+      <% else %>
+
+      <h1 class="my-4">  Welcome. If you want to submit new gossips, please log in!</h1>
+
+      <% end %>
+
+
+      <a class="btn btn-primary" <%= link_to "Submit a new Gossip", new_gossip_path %> </a>
+
+
         <h1> <small> Voici tous les potins :</small> </h1>
     
 
@@ -38,6 +59,8 @@
 		    <a class="btn btn-primary" <%= link_to "Go to gossip page", gossip_path(gossip) %> </a>
 		  </div>
 		</div>
+
+      
 
       <%end%>
 

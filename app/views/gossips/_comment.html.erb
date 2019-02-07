@@ -1,4 +1,5 @@
 <div>
-  <h4>Comment by <%= comment.user.first_name %></h4>
+  <h4>Comment by <%= comment.user.first_name %> <%= comment.user.last_name %></h4>
   <p class="comment"><%= comment.content %></p>
+  <p> ( Posted <%= distance_of_time_in_words(comment.gossip.created_at, comment.created_at) %> later ) </p>
 </div>

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  include SessionsHelper
+
   def index
     @users = User.all
   end
@@ -23,25 +25,40 @@ class UsersController < ApplicationController
     puts params
     puts "$" * 60
     
-    @user = User.new(title: params[:title], content: params[:content], user_id: params[:user_id])
-    
+    @user = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password], city_id: City.all.ids.sample)
 
-    puts "$" * 60
-    puts "ceci est mon objet Gossip :"
-    puts @gossip.title
-	puts @gossip.content
-	puts @gossip.user_id
-	puts @gossip.user.first_name
-	puts @gossip.user.last_name
-    puts "$" * 60
+      puts "*********************************************"
+      puts "@user.id"
+      puts @user 
+      puts "*********************************************"
 
-
-    if @gossip.save
-      redirect_to @gossip
+    if @user.save
+      
+      session[:user_id] = @user.id
+      current_user
+      redirect_to root_path
     else
       render :new
     end
+
+      puts "*********************************************"
+      puts "session"
+      puts session
+      puts "*********************************************"
+
+      puts "*********************************************"
+      puts "my params"
+      puts params
+      puts "*********************************************"
+
+
+      puts "*********************************************"
+      puts "current user"
+      puts current_user
+      puts "*********************************************"
+
   end
+
 
   def destroy
     @user = User.find(params[:id])

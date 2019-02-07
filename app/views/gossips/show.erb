@@ -36,8 +36,18 @@
 
   <p> <%= link_to "Read more about the author", user_path(@gossip.user.id) %> </p> 
   <p> <%= link_to "Read more about the city", city_path(@gossip.user.city) %> </p> 
-  <p> <%= link_to "Edit this gossip", edit_gossip_path %> </p> 
-  <p> <%= link_to 'Delete this gossip', gossip_path(@gossip), method: :delete, data: { confirm: 'Are you sure?' } %></p> 
+
+  <% if current_user %>      
+
+    <p> <%= link_to "Edit this gossip", edit_gossip_path %> </p> 
+    <p> <%= link_to 'Delete this gossip', gossip_path(@gossip), method: :delete, data: { confirm: 'Are you sure?' } %></p> 
+
+  <% else %>
+
+  <% end %>
+
+
+
 
 
   <h3>Comments (<%= @gossip.comments.size %>)</h3>

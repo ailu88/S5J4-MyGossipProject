@@ -1,0 +1,41 @@
+<html>
+  <head>
+  </head>
+
+<body>
+
+	<center>
+
+    <h1> Create a new user </h1>
+
+    <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+      <%= label_tag 'Your first name' %>
+      <%= text_field_tag 'first_name' %>
+      <br /> <br />
+
+      <%= label_tag 'Your last name' %>
+      <%= text_field_tag 'last_name' %>
+      <br /> <br />
+
+      <%= label_tag 'Your email' %>
+      <%= text_field_tag 'email' %>
+      <br /> <br />
+
+      <%= label_tag 'Your password' %>
+      <%= text_field_tag 'password' %>
+      <br /> <br />
+
+      <%= submit_tag "Create User" %>
+
+    <% end %>
+
+
+	</center>
+
+
+
+
+</body>
+
+</html>
