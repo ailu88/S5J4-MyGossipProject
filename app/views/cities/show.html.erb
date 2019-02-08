@@ -1,35 +1,39 @@
 <html>
   <head>
-    <title>Contact</title>
-  <body> 
-  	<p> Welcome sur la page de la ville <%= @city.name%> !</p> 
-  	<p>Voici les potins qui ont été écrits dans cette ville :</p>
+    <title>City Gossips</title>
+    </head>
 
+    <body> 
 
-<% @users.each do |user| %>    
+    <div class="container" style= "text-center">
 
-    <% @gossips_subarray = @gossips.where("user_id = ?", user.id) %>
+      <h2> What's new in <%= @city.name%> ?</h2>
+      <p> All gossips from there : </p> 
 
-      <br />
+      <% @users.each do |user| %>    
 
-    <% @gossips_subarray.each do |gossip| %>
-        
-              <div class="card" style = "margin-bottom:25px" >
-          <div class="card-header" >
-            <%= gossip.user.first_name %> <%= gossip.user.last_name %>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title"><%= gossip.title %></h5>
-            <p class="card-text"><%= gossip.content %></p>
-            <a class="btn btn-primary" <%= link_to "Go to gossip page", gossip_path(gossip) %> </a>
-          </div>
-        </div>
+          <% @gossips_subarray = @gossips.where("user_id = ?", user.id) %>
 
-          <%end%>
+            <br />
 
-  <%end%>
+          <% @gossips_subarray.each do |gossip| %>
+              
+                    <div class="card" style = "margin-bottom:25px" >
+                <div class="card-header" >
+                  <%= gossip.user.first_name %> <%= gossip.user.last_name %>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><%= gossip.title %></h5>
+                  <p class="card-text"><%= gossip.content %></p>
+                  <a class="btn btn-primary" <%= link_to "Go to gossip page", gossip_path(gossip) %> </a>
+                </div>
+              </div>
 
-  <%= link_to "Se déconnecter", session_path(session[:user_id]), method: :delete %>
+                <%end%>
+
+        <%end%>
+
+    </div>
 
 </body>
 </html>

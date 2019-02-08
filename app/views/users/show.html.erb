@@ -1,53 +1,31 @@
 <html>
+  
   <head>
-    <title>Contact</title>
+      <title>Author</title>
+  </head>
+
   <body> 
-  	<p> Welcome sur la page de l'auteur <%= @user.first_name%> <%= @user.last_name%> !</p> 
-  	<p>Voici les infos sur cet auteur :</p>
 
-  	<table class="table">
-  <thead>
-    <tr>
-      <th scope="row">#</th>
-      <th scope="row">First Name</th>
-      <th scope="row">Last Name</th>
-      <th scope="row">Description</th>
-      <th scope="row">Email</th>
-      <th scope="row">Age</th>
-      <th scope="row">City</th>
-    </tr>
-  </thead>
-
-  <tbody>
-
-    <tr>
-      <th scope="col"> # </th>
-      <td> <%= @user.first_name %> </td>
-      <td> <%= @user.last_name %> </td>
-      <td> <%= @user.description %> </td>
-      <td> <%= @user.email %> </td>
-      <td> <%= @user.age %> </td>
-      <td> <%= @user.city.name %> </td>
-    </tr>
-
-  </tbody>
-
-</table>
+  <div class="container" style= "text-center">
+  	<h2> Welcome on <%= @user.first_name%> <%= @user.last_name%> page!</h2> 
+    
+  </div>
 
 
-<div class="container">
 
-            <div class="card" style = "margin-bottom:25px" >
-        <div class="card-header" >
-          <%= @user.first_name %> <%= @user.last_name %>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"> Description : <%= @user.description %></h5>
-          <p class="card-text">Email : <%= @user.email %></p>
-          <a class="btn btn-primary" <%= link_to "Read more about the city", city_path(@user.city) %> </a>
-          <p> <%= link_to "Read more about the city", city_path(@user.city) %> </p> 
-        </div>
+    <div class="container">
+
+        <div class="card" style = "margin-top:30px" >
+          <div class="card-header" > <%= @user.first_name %> <%= @user.last_name %></div>
+            <div class="card-body">
+                <h5 class="card-title"> Description : <%= @user.description %></h5>
+                <p class="card-text">Age : <%= @user.age %></p>
+                <p class="card-text">Email : <%= @user.email %></p>
+                <p class="card-text">City : <%= @user.city.name %></p>
+                <a class="btn btn-primary" <%= link_to "Read all the gossips from this city", city_path(@user.city) %> </a>
+            </div>
       </div>
+    </div>
 
   
 

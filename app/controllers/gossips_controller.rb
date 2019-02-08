@@ -9,17 +9,6 @@ class GossipsController < ApplicationController
   def index
     	@gossips = Gossip.all
 
-    	puts "*********************************************"
-    	puts "*********************************************"
-
-    	puts "Value of current_user once arrived in Gossip Index Page"
-
-    	puts current_user
-
-
-    	puts "*********************************************"
-    	puts "*********************************************"
-
   end
 
   def show
@@ -79,7 +68,8 @@ class GossipsController < ApplicationController
   def author_match
     @gossip = Gossip.find(params[:id])
     unless current_user.id == @gossip.user.id
-      	flash[:danger] = "You are not allowed."
+				flash[:danger] = "You are not allowed."
+				redirect_to root_path
 		end
 	end
 

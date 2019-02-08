@@ -19,35 +19,35 @@
               <div class="form-signin">
 
 
+              <div>
 
-			    <%= form_tag url_for(action: 'create'), method: "post" do %>
+                <%= form_tag url_for(action: 'create'), method: "post" do %>
+                  
 
-			    <div>
+                  <%= label_tag 'Title' %> <label class="pass">
 
-			     
+                  <br>
 
-				      <%= label_tag 'Title' %> <label class="pass">
+                  <%= text_field_tag 'title', @gossip.title %>
 
-				      	<br>
-
-				      <%= text_field_tag 'title', @gossip.title %>
-				       <br>
-
-
-				 </div>
-
-				 <div>
-
-				      <%= label_tag 'Content' %> 
-				      <%= text_area_tag 'content', @gossip.content %>
-				      <br /> <br />
-
-				      <%= submit_tag "Create Gossip" %>
+                  <br>
 
 
-				  </div>
+                  <%= label_tag 'Content' %> 
+                  <%= text_area_tag 'content', @gossip.content %>
 
-			    <% end %>
+                  <br>
+
+                  
+
+                  <%= submit_tag "Create Gossip" %>
+
+                  
+
+
+                </div>
+
+                <% end %>
 
 
                 </div>
